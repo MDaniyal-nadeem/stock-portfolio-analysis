@@ -1,183 +1,222 @@
 # Stock Portfolio Analysis — Pakistani Equities
 
 ## Project Overview
-Comprehensive financial analysis of 4 major Pakistani stocks (OGDC, LUCK, HBL, ENGRO) against the KSE-100 benchmark index. Analysis period: January 2019 – December 2025.
 
-## What This Project Does
-- Calculates daily and annual returns for individual stocks
-- Measures risk using standard deviation and coefficient of variation
-- Estimates Beta coefficients using regression analysis (CAPM framework)
-- Builds portfolio combinations and analyzes risk-return tradeoffs
-- Determines stock valuation using Security Market Line (SML)
-- Compares systematic vs unsystematic risk
+A comprehensive financial analysis of four major Pakistani stocks (OGDC, LUCK, HBL, ENGRO) against the KSE-100 benchmark index using capital asset pricing model (CAPM) and modern portfolio theory (MPT). Analysis covers seven years of historical data (January 2019 – December 2025) with 1,764 daily observations.
 
-##  Key Findings
-- **Best Performer:** Lucky Cement (LUCK) — 23.04% annual return
-- **Most Volatile:** ENGRO — 30.26% annual volatility
-- **Lowest Volatility:** KSE-100 Index — 17.82% (market baseline)
-- **Beta Analysis:** All stocks showed low correlation with KSE-100 (idiosyncratic risk dominant)
-- **Risk-Free Rate:** 11.35% (12-month T-Bill rate as of 2026)
+## Objective
 
-##  Methodology
+To analyze and compare the risk-return characteristics of selected Pakistani equities, estimate systematic risk through beta coefficients, assess diversification potential via correlation analysis, and provide evidence-based insights for portfolio construction and asset allocation decisions.
 
-### 1. Data Collection
-- Daily closing prices for 4 stocks + KSE-100 index
-- Period: January 1, 2019 – December 31, 2025 (7 years of data)
-- Source: Pakistan Stock Exchange (PSX) historical data
+## Dataset
+
+Source: Pakistan Stock Exchange (PSX) historical data
+Period: January 1, 2019 – December 31, 2025
+Data Points: 1,764 daily observations
+Companies: OGDC (Oil & Gas), LUCK (Cement), HBL (Banking), ENGRO (Chemicals)
+Benchmark: KSE-100 Index
+Risk-Free Rate: 11.35% (12-month T-Bill rate, 2026)
+
+## Methodology
+
+### 1. Data Collection and Cleaning
+
+Daily closing prices were collected for all four stocks and the KSE-100 index. The dataset was validated for completeness and accuracy across the seven-year period.
 
 ### 2. Returns Calculation
-```
-Daily Return = (Price Today - Price Yesterday) / Price Yesterday
-Annual Return = Average Daily Return × 252 trading days
-```
+
+Daily returns were calculated using the percentage change formula:
+
+Daily Return = (Price(t) - Price(t-1)) / Price(t-1)
+
+Annual returns were derived by multiplying average daily returns by 252 (the number of trading days in a year):
+
+Annual Return = Average Daily Return × 252
 
 ### 3. Risk Metrics
-**Standard Deviation (Volatility):**
-- Measures how much returns fluctuate day-to-day
-- Higher SD = more unpredictable = riskier stock
-- Used to annualize: Daily SD × √252
 
-**Coefficient of Variation (CV):**
-- Risk per unit of return (CV = Std Dev / Mean Return)
-- Shows risk-adjusted performance
-- Lower CV = better risk-adjusted returns
+Standard deviation was calculated to measure volatility, both on a daily and annualized basis:
 
-### 4. Beta Estimation (Regression Analysis)
-```
-Stock Return = α (Alpha) + β (Beta) × Market Return + Error
-```
+Annual Volatility = Daily Standard Deviation × √252
 
-**Beta Interpretation:**
-- **β = 1.0** → Stock moves exactly with market
-- **β > 1.0** → More volatile than market (aggressive)
-- **β < 1.0** → Less volatile than market (defensive)
-- **β ≈ 0** → Stock moves independently of market (low systematic risk)
+Coefficient of Variation (CV) was computed to assess risk-adjusted performance:
 
-**Alpha Interpretation:**
-- Positive α = Stock outperforms market on risk-adjusted basis
-- Negative α = Stock underperforms market
-- Shows manager's skill or stock-specific value
+CV = Standard Deviation / Expected Return
 
-### 5. CAPM (Capital Asset Pricing Model)
-```
-Expected Return = Risk-Free Rate + β × (Market Return - Risk-Free Rate)
-```
+### 4. Beta Estimation via Regression Analysis
 
-Used to determine if a stock is overvalued or undervalued using Security Market Line (SML).
+Linear regression was performed to estimate beta coefficients:
 
-### 6. Portfolio Construction
-- Created portfolios with different weight combinations
-- Analyzed efficient frontier (best risk-return combinations)
-- Calculated portfolio return and portfolio risk
-- Portfolio Return = Sum of (Weight × Stock Return)
-- Portfolio Risk = SQRT(Weighted Sum of Variance-Covariance Matrix)
+Stock Return = α (Alpha) + β (Beta) × Market Return + ε (Error)
 
-## 📁 File Structure
-```
-FM_Assignment3_Fixed.xlsx
-├── Cover
-│   └── Assignment details, company list, time period, risk-free rate
-├── Raw Price Data
-│   └── Daily closing prices for OGDC, LUCK, HBL, ENGRO, KSE-100
-├── Daily Returns
-│   └── Calculated daily returns for all stocks and index
-├── Summary Statistics
-│   └── Mean return, std dev, CV, min/max returns for each stock
-├── Beta & Regression
-│   └── Beta, Alpha, Correlation, R² from regression analysis
-├── Portfolio Analysis
-│   └── Different portfolio combinations and their risk-return profiles
-└── SML & Valuation
-    └── Security Market Line and stock valuation results
-```
+Where:
+- Beta measures systematic risk relative to the market
+- Alpha represents risk-adjusted excess return
+- The regression was performed using daily returns over the entire period
 
-##  Learning Outcomes
+### 5. Correlation Analysis
 
-This project demonstrates mastery of:
-- Portfolio diversification and Modern Portfolio Theory (MPT)
-- Capital Asset Pricing Model (CAPM) and Security Market Line (SML)
-- Beta coefficient calculation and interpretation
-- Risk-return optimization
-- Statistical analysis (correlation, regression, std dev)
-- Financial modeling using Excel advanced formulas
-- Real-world application to Pakistani stock market
+Pearson correlation coefficients were calculated to measure the relationship between each stock and the KSE-100 index, providing insight into diversification benefits.
 
-##  Technical Skills Applied
+### 6. Portfolio Analysis
 
-| Skill | Application |
-|-------|-------------|
-| **Statistical Analysis** | Mean, standard deviation, correlation, regression |
-| **Financial Modeling** | CAPM, portfolio theory, risk-return analysis |
-| **Regression Analysis** | Slope/Intercept calculation for Beta/Alpha |
-| **Excel Functions** | SLOPE(), INTERCEPT(), STDEV(), CORREL(), AVERAGE() |
-| **Data Analysis** | 7 years × 252 trading days = 1,764 data points analyzed |
-| **Critical Thinking** | Why do stocks behave independently? When to diversify? |
+Different portfolio weight combinations were analyzed to evaluate risk-return tradeoffs and efficient frontier opportunities. Portfolio metrics were calculated as:
 
-##  Companies Analyzed
+Portfolio Return = Σ (Weight × Stock Return)
+Portfolio Risk = √(Weighted Variance-Covariance Matrix)
 
-| Stock | Sector | Beta | Annual Return | Annual Risk | R² | Interpretation |
-|-------|--------|------|---------------|-------------|-----|-----------------|
-| OGDC | Oil & Gas | 0.002 | -1.77% | 22.05% | 0.0000016 | Defensive, negative returns |
-| LUCK | Cement | -0.092 | 23.04% | 28.19% | 0.0034 | Best performer, high risk |
-| HBL | Banking | -0.009 | 4.35% | 24.68% | 0.000042 | Stable, modest returns |
-| ENGRO | Chemicals | 0.005 | -1.23% | 30.26% | 0.0000085 | Highest risk, negative returns |
-| KSE-100 | Index | — | 6.81% | 17.82% | — | Market baseline |
+## Key Findings
 
-##  Future Improvements & Automation
+### Return Analysis
 
-- **Python Implementation:** Automate using pandas, numpy, scikit-learn
-- **Real-time Data:** Connect to PSX API for live stock prices
-- **Dashboard:** Build interactive Plotly/Dash visualization
-- **Monte Carlo:** Simulate portfolio returns over 1-5 year horizon
-- **Time Series Forecasting:** ARIMA/GARCH models for return prediction
-- **Optimization:** Maximize Sharpe ratio for optimal portfolio weights
-- **Risk Management:** Value-at-Risk (VaR), Conditional VaR calculations
+LUCK Cement emerged as the best performer with an annual return of 23.04%, substantially outperforming the market average of 6.81%. HBL delivered modest but positive returns of 4.35%, while OGDC and ENGRO both recorded negative returns at -1.77% and -1.23% respectively.
 
-##  Key Insights
+### Risk Analysis
 
-1. **Low Systematic Risk:** All stocks have near-zero beta, meaning KSE-100 movements don't drive their prices. Stock-specific factors dominate.
+Annual volatility ranged from 17.82% (KSE-100) to 30.26% (ENGRO). All four stocks demonstrated higher individual volatility compared to the market index, a characteristic typical of single equities.
 
-2. **Risk ≠ Return:** ENGRO has highest risk (30.26%) but lowest return (-1.23%). LUCK has high risk (28.19%) but high return (23.04%). Risk doesn't always reward.
+### Systematic Risk Assessment
 
-3. **Diversification Value:** Low/negative correlations between stocks = excellent diversification candidates. Portfolio risk can be lower than individual stock risk.
+All stocks exhibited near-zero beta coefficients (ranging from -0.0918 to 0.0049), indicating minimal systematic risk exposure. This suggests these stocks move independently of broader market movements, driven primarily by company-specific and sector-specific factors.
 
-4. **Market Disconnect:** These 4 stocks behave independently from the broader KSE-100 index. May indicate sector-specific headwinds or stock-specific opportunities.
+### Correlation with Market
 
-5. **Volatility Clustering:** Standard deviation ranges from 22% to 30% annually — all significantly riskier than market (17.82%).
+Correlation coefficients remained close to zero for all stocks, with LUCK showing slight negative correlation (-0.0581) with the KSE-100 index. This low correlation indicates strong diversification potential when combining these stocks with market index positions.
 
-##  Concepts Applied
+### Risk-Adjusted Performance
 
-- **Capital Asset Pricing Model (CAPM)** — Determining required returns
-- **Modern Portfolio Theory (MPT)** — Building efficient portfolios
-- **Beta & Systematic Risk** — Market-related risk measurement
-- **Security Market Line (SML)** — Valuation framework
-- **Diversification** — Reducing risk through correlation analysis
-- **Risk-Return Tradeoff** — Investor preference curves
-- **Regression Analysis** — Estimating beta coefficients
+The coefficient of variation analysis revealed LUCK (1.22) and KSE-100 (2.62) as the best risk-adjusted performers, followed by HBL (5.68). ENGRO (24.53) and OGDC (12.47) exhibited poor risk-adjusted returns.
 
-##  About This Project
+## Analysis and Interpretation
 
-Created as part of **Financial Management coursework** at COMSATS University Islamabad.
+### Daily Returns Over Time
 
-**Author:** Daniyal Nadeem  
-**Course:** Financial Management (BBD-IV)  
-**Institution:** COMSATS University Islamabad  
-**Submission Date:** April 11, 2026  
-**Data Period:** January 1, 2019 – December 31, 2025
+The time series analysis of daily returns demonstrates significant volatility differences across the five assets. ENGRO and LUCK exhibit pronounced price fluctuations with daily swings exceeding 5%, while KSE-100 displays relatively stable movement patterns. This visual representation confirms the statistical volatility metrics.
+
+### Annual Return Comparison
+
+The return differential across stocks underscores the importance of stock selection. A 25-percentage-point spread separates the best performer (LUCK: 23.04%) from the worst performer (ENGRO: -1.23%), emphasizing that higher risk does not automatically guarantee proportional returns.
+
+### Risk vs Return Tradeoff
+
+The scatter plot analysis reveals three distinct regions: LUCK occupies the upper-right quadrant (high risk, high return), ENGRO occupies the lower-right quadrant (high risk, low return), and HBL remains in the middle ground (moderate risk, moderate return). This distribution illustrates the core principle of portfolio theory: investors must be compensated for accepting risk through proportionate returns.
+
+### Risk-Adjusted Returns
+
+When controlling for risk through coefficient of variation analysis, HBL and LUCK emerge as superior choices. HBL's 5.68 CV indicates reasonable returns for its risk level, while LUCK's 1.22 CV demonstrates exceptional return efficiency despite high volatility. ENGRO's 24.53 CV indicates excessive risk relative to negative returns, making it an unfavorable risk-return combination.
+
+### Systematic Risk and Market Independence
+
+The near-zero beta coefficients indicate that these stocks are driven by idiosyncratic rather than systematic risk factors. This finding is significant for portfolio construction: these assets do not amplify or dampen market movements, instead moving according to company-specific developments, sector dynamics, and regional economic factors.
+
+### Diversification Potential
+
+Low or negative correlation coefficients suggest strong diversification benefits. When combined with market index holdings or other Pakistani stocks, these assets can reduce overall portfolio volatility without proportionally reducing expected returns. LUCK's negative correlation is particularly valuable as a portfolio hedge.
+
+## Technical Skills Demonstrated
+
+- Statistical analysis (mean, standard deviation, correlation, regression)
+- Financial modeling (CAPM framework, portfolio theory, risk metrics)
+- Quantitative analysis (beta estimation, efficient frontier optimization)
+- Time series analysis (daily return patterns, volatility clustering)
+- Data visualization (multiple chart types, professional presentation)
+- Business intelligence (translating quantitative results into actionable insights)
+
+## Tools and Libraries
+
+- Microsoft Excel (data organization, calculations, formulas)
+- Advanced Excel functions (SLOPE, INTERCEPT, STDEV, CORREL)
+- Python (data analysis, visualization, statistical modeling)
+- Pandas (data manipulation and analysis)
+- Matplotlib/Seaborn (professional chart creation)
+
+## Data Structure
+
+The analysis is organized across multiple worksheets:
+
+- **Raw Price Data**: Daily closing prices for all five assets (1,825 rows)
+- **Daily Returns**: Calculated daily returns for all five assets (1,825 rows)
+- **Summary Statistics**: Descriptive statistics including mean, standard deviation, and coefficient of variation
+- **Beta & Regression**: Beta coefficients, alpha values, correlation, and R-squared from regression analysis
+- **Portfolio Analysis**: Various portfolio combinations and their risk-return profiles
+- **SML & Valuation**: Security Market Line calculations and stock valuation results
+
+## Visualizations
+
+The analysis includes eight primary visualizations:
+
+1. Daily Returns Over Time: Time series chart showing return patterns across all assets
+2. Annual Return Comparison: Bar chart comparing total return performance
+3. Annual Volatility Comparison: Bar chart comparing risk levels
+4. Risk vs Return Scatter Plot: Efficient frontier representation
+5. Coefficient of Variation: Risk-adjusted return comparison
+6. Beta Comparison: Systematic risk by asset
+7. Correlation with Market: Market sensitivity analysis
+8. Regression Analysis: Individual scatter plots for each stock showing market relationship
+
+## Key Insights and Conclusions
+
+1. Risk and return are not perfectly correlated. Higher volatility does not guarantee higher returns (ENGRO example).
+
+2. Market independence creates diversification value. Low systematic risk means these stocks behave differently from the broader market.
+
+3. Risk-adjusted metrics are essential for decision-making. CV analysis reveals that LUCK delivers superior returns per unit of risk despite high absolute volatility.
+
+4. Diversification reduces portfolio risk. The low correlation between stocks and the market suggests significant benefits to combining these assets in a diversified portfolio.
+
+5. Stock selection matters significantly. The 25-percentage-point spread between best and worst performers demonstrates the impact of individual equity choices on portfolio outcomes.
+
+## Applications and Use Cases
+
+This analysis framework is applicable to:
+
+- Portfolio construction and rebalancing
+- Investment manager performance evaluation
+- Risk assessment for institutional portfolios
+- Educational demonstration of CAPM and MPT principles
+- Market analysis for Pakistani equity markets
+- Comparative asset allocation studies
+
+## Limitations
+
+The analysis assumes historical data is representative of future performance. Market conditions, regulatory changes, and company-specific developments may alter the relationships observed in this seven-year period. Beta coefficients and correlation values should be updated regularly as new data becomes available.
+
+## Future Enhancements
+
+Potential extensions to this analysis include:
+
+- Implementation of dynamic beta estimation using rolling windows
+- Factor analysis to identify specific drivers of stock performance
+- Monte Carlo simulation for portfolio return forecasting
+- Machine learning models for return prediction
+- Integration of additional variables (earnings, macroeconomic indicators)
+- Real-time data integration and automated reporting
+
+## Contact and Information
+
+Author: Daniyal Nadeem
+Institution: COMSATS University Islamabad
+Program: Business Data Analytics
+Course: Financial Management (BBD-IV)
+Analysis Date: April 2026
+Data Period: January 1, 2019 – December 31, 2025
+
+## Repository
+
+All analysis files, including raw data, calculations, and visualizations, are available in this repository. The Excel file contains complete formulas and can be modified for alternative stock selections or time periods.
+
+## Professional Application
+
+This project demonstrates competency in:
+- Applied financial theory
+- Quantitative data analysis
+- Professional visualization
+- Business intelligence and reporting
+- Statistical interpretation
+- Risk management frameworks
+
+This work is suitable for portfolio presentation to financial institutions, investment firms, and data analysis roles requiring demonstrated understanding of portfolio theory and quantitative methods.
 
 ---
 
-## 📞 Contact & Next Steps
-
-💡 Open to **internship opportunities** in:
-- Data Analysis
-- Financial Analysis
-- Business Intelligence
-- Quantitative Finance
-
-📧 Email: daniyalndm.professional@gmail.com  
-🔗 LinkedIn: [linkedin.com/in/daniyal-nadeem](https://www.linkedin.com/in/daniyal-nadeem-95687128b/)
-
----
-
-*This analysis demonstrates practical application of financial theory to real-world asset allocation decisions.*
+*This analysis represents a comprehensive application of capital asset pricing model and modern portfolio theory to real-world market data, with particular relevance to Pakistani equity markets.*
