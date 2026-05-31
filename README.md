@@ -178,7 +178,7 @@ Created as part of **Financial Management coursework** at COMSATS University Isl
 - Quantitative Finance
 
 📧 Email: daniyalndm.professional@gmail.com  
-🔗 LinkedIn: [linkedin.com/in/MDaniyal-nadeem](https://www.linkedin.com/in/daniyal-nadeem-95687128b/)
+🔗 LinkedIn: [linkedin.com/in/daniyal-nadeem](https://www.linkedin.com/in/daniyal-nadeem-95687128b/)
 
 ---
 
